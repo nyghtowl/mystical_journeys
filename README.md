@@ -2,13 +2,13 @@
 
 An AI-powered fantasy travel planning application built with FastAPI and Python, featuring multi-provider AI integration with real-time streaming responses. Journey through enchanted realms and mystical destinations with our AI travel oracles crafting personalized quest itineraries.
 
+![Mystical Journeys Site preview](images/mystical-journeys.gif)
+
 ## 🎯 Origin Story
 
 I built a thing! Last night I hacked together this site with Claude to experiment with setting up an example that pulled from a couple LLM APIs. The main goal was to experiment and learn. Note Ollama is setup to integrate from a local running LLM application while the rest pull from APIs. I pulled in Ollama (and this can be true for other LLMs you run on your laptop) to show this can be run without having to pay to use the APIs from other LLMs. Check it out and try it out.
 
 This project demonstrates multi-LLM integration patterns and real-time streaming architectures, showcasing how to:
-
-<img src="images/mystical-journeys-main-page.png" alt="Mystical Journeys Demo" width="600">
 
 **Key Implementation Files to Check Out:**
 - `app/main.py` - FastAPI routes and streaming logic
@@ -31,6 +31,8 @@ This project demonstrates multi-LLM integration patterns and real-time streaming
 - **🌍 Smart Planning**: Budget-aware, interest-based recommendations
 - **📱 Responsive Design**: Works on desktop and mobile
 - **🐉 Dragon Language**: Toggle between English and emoji translations
+
+<img src="images/mystical-journeys-main-page.png" alt="Mystical Journeys Demo" width="600">
 
 ## 🚀 Quick Start
 
