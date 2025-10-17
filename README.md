@@ -2,7 +2,9 @@
 
 An AI-powered fantasy travel planning application built with FastAPI and Python, featuring multi-provider AI integration with real-time streaming responses. Journey through enchanted realms and mystical destinations with our AI travel oracles crafting personalized quest itineraries.
 
-![Mystical Journeys Site preview](images/mystical-journeys.gif)
+<div align="center">
+  <img src="images/mystical-journeys.gif" alt="Mystical Journeys Site preview">
+</div>
 
 ## 🎯 Origin Story
 
@@ -32,7 +34,9 @@ This project demonstrates multi-LLM integration patterns and real-time streaming
 - **📱 Responsive Design**: Works on desktop and mobile
 - **🐉 Dragon Language**: Toggle between English and emoji translations
 
-<img src="images/mystical-journeys-main-page.png" alt="Mystical Journeys Demo" width="600">
+<div align="center">
+  <img src="images/mystical-journeys-main-page.png" alt="Mystical Journeys Demo" width="600">
+</div>
 
 ## 🚀 Quick Start
 
