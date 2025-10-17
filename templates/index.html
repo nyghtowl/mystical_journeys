@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystical Journeys - Fantasy Realm Travel Agency</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet">
+</head>
+<body class="magical-bg">
+    
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="brand-logo">
+                <i class="fas fa-hat-wizard"></i>
+                <h1 id="main-title">{{ config.title }}</h1>
+            </div>
+            <div class="language-selector">
+                <select id="language-select" class="language-dropdown">
+                    <option value="english">{{ config.languages.english.flag }} {{ config.languages.english.name }}</option>
+                    <option value="dragon">{{ config.languages.dragon.flag }} {{ config.languages.dragon.name }}</option>
+                </select>
+            </div>
+            <p class="tagline" id="main-tagline">
+                <i class="fas fa-sparkles"></i>
+                {{ config.tagline }}
+            </p>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+        <section class="hero">
+            <h2 id="hero-title">{{ config.hero.title.split()[0] }} {{ config.hero.title.split()[1] }} <span class="gradient-text">{{ config.hero.title.split()[2] }} {{ config.hero.title.split()[3] }}</span></h2>
+            <p id="hero-description">{{ config.hero.description }}</p>
+            <div class="quest-icons">
+                {% for icon in config.hero.icons %}<span>{{ icon }}</span>{% endfor %}
+            </div>
+        </section>
+
+        <section id="travel-form" class="quest-card">
+            <header class="quest-header">
+                <i class="fas fa-scroll"></i>
+                <div>
+                    <h3>{{ config.form.title }}</h3>
+                    <p>{{ config.form.description }}</p>
+                </div>
+            </header>
+            
+            <form id="travelForm" class="quest-form">
+                <fieldset class="form-group">
+                    <label for="destination">
+                        <i class="fas fa-globe-americas"></i>
+                        {{ config.form.fields.destination.label }}
+                    </label>
+                    <select id="destination" name="destination" required>
+                        <option value="">{{ config.form.fields.destination.placeholder }}</option>
+                        {% for realm in realms %}
+                        <option value="{{ realm.value }}">{{ realm.label }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="error-message" id="destination-error"></div>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="days">
+                        <i class="fas fa-calendar-days"></i>
+                        {{ config.form.fields.days.label }}
+                    </label>
+                    <input type="number" id="days" name="days" value="5" min="1" max="30" required>
+                    <div class="error-message" id="days-error"></div>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="budget">
+                        <i class="fas fa-coins"></i>
+                        {{ config.form.fields.budget.label }}
+                    </label>
+                    <select id="budget" name="budget" required>
+                        <option value="">{{ config.form.fields.budget.placeholder }}</option>
+                        {% for budget in budgets %}
+                        <option value="{{ budget.value }}">{{ budget.label }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="error-message" id="budget-error"></div>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label>
+                        <i class="fas fa-heart"></i>
+                        {{ config.form.fields.interests.label }}
+                    </label>
+                    <div class="interests-grid">
+                        {% for interest in interests %}
+                        <label class="interest-option">
+                            <input type="checkbox" name="interests" value="{{ interest.value }}">
+                            <span class="interest-label">{{ interest.label }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="error-message" id="interests-error"></div>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label>
+                        <i class="fas fa-brain"></i>
+                        {{ config.form.fields.providers.label }}
+                    </label>
+                    <div class="provider-selection">
+                        {% for provider in providers %}
+                        <label class="provider-option">
+                            <input type="checkbox" name="providers" value="{{ provider.key }}" 
+                                   {% if provider.available %}{% if loop.index <= 2 %}checked{% endif %}{% else %}disabled{% endif %}>
+                            <span class="provider-name">{{ provider.name }}</span>
+                            <span class="provider-status {{ 'available' if provider.available else 'unavailable' }}">
+                                {{ config.provider_status.available if provider.available else config.provider_status.unavailable }}
+                            </span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="error-message" id="providers-error"></div>
+                </fieldset>
+
+                <button type="submit" class="quest-button">
+                    <i class="fas fa-magic"></i>
+                    {{ config.form.submit_button }}
+                    <i class="fas fa-sparkles"></i>
+                </button>
+            </form>
+        </section>
+
+        <section id="loading" class="loading-card hidden">
+            <div class="loading-spinner">
+                <div class="spinner-ring"></div>
+                <i class="fas fa-hat-wizard"></i>
+            </div>
+            <h3>{{ config.loading.title }}</h3>
+            <p>{{ config.loading.description }}</p>
+            <div class="loading-icons">
+                {% for icon in config.loading.icons %}<span>{{ icon }}</span>{% endfor %}
+            </div>
+        </section>
+
+        <section id="results" class="results-card hidden">
+            <header class="results-header">
+                <i class="fas fa-balance-scale"></i>
+                <h3>{{ config.results.title }}</h3>
+            </header>
+            <div id="comparison-container" class="comparison-container">
+                <!-- Dynamic comparison panels will be inserted here -->
+            </div>
+            <footer class="results-footer">
+                <button id="back-to-form-btn" class="quest-button">
+                    <i class="fas fa-arrow-left"></i>
+                    {{ config.results.buttons.modify }}
+                </button>
+                <button onclick="location.reload()" class="quest-button secondary">
+                    <i class="fas fa-redo"></i>
+                    {{ config.results.buttons.new }}
+                </button>
+            </footer>
+        </section>
+    </main>
+
+    <footer class="company-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="footer-brand">
+                    <i class="fas fa-hat-wizard"></i>
+                    <h3 id="footer-company-name">{{ config.footer.company_name }}</h3>
+                    <p id="footer-tagline">{{ config.footer.tagline }}</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#" id="footer-about">{{ config.footer.links.about }}</a></li>
+                    <li><a href="#" id="footer-careers">{{ config.footer.links.careers }}</a></li>
+                    <li><a href="#" id="footer-contact">{{ config.footer.links.contact }}</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#" id="footer-privacy">{{ config.footer.links.privacy }}</a></li>
+                    <li><a href="#" id="footer-terms">{{ config.footer.links.terms }}</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link" id="footer-twitter">{{ config.footer.social.twitter }}</a>
+                    <a href="#" class="social-link" id="footer-instagram">{{ config.footer.social.instagram }}</a>
+                    <a href="#" class="social-link" id="footer-facebook">{{ config.footer.social.facebook }}</a>
+                </div>
+                <div class="contact-info">
+                    <p id="footer-email">{{ config.footer.contact_info.email }}</p>
+                    <p id="footer-phone">{{ config.footer.contact_info.phone }}</p>
+                    <p id="footer-address">{{ config.footer.contact_info.address }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p id="footer-copyright">{{ config.footer.copyright }}</p>
+        </div>
+    </footer>
+
+    <div id="sparkle-container" class="fixed inset-0 pointer-events-none z-50"></div>
+
+    <script>
+        // Make dragon translations available to JavaScript
+        window.dragonTranslations = {{ dragon_translations | tojson }};
+        window.englishConfig = {{ config | tojson }};
+    </script>
+    <script src="/static/app.js"></script>
+</body>
+</html>
