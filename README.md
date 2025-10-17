@@ -8,6 +8,8 @@ I built a thing! Last night I hacked together this site with Claude to experimen
 
 This project demonstrates multi-LLM integration patterns and real-time streaming architectures, showcasing how to:
 
+<img src="images/mystical-journeys-main-page.png" alt="Mystical Journeys Demo" width="600">
+
 **Key Implementation Files to Check Out:**
 - `app/main.py` - FastAPI routes and streaming logic
 - `app/providers.py` - LLM provider abstractions and implementations
