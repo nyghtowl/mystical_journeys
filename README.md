@@ -4,7 +4,7 @@ An AI-powered fantasy travel planning application built with FastAPI and Python,
 
 ## 🎯 Origin Story
 
-Last night I hacked together this site with Claude to experiment with setting up an example that pulled from a couple LLM APIs. The main goal was to experiment and learn. Note Ollama is setup to integrate from a local running LLM application while the rest pull from APIs. I pulled in Ollama (and this can be true for other LLMs you run on your laptop) to show this can be run without having to pay to use the APIs from other LLMs. Check it out and try it out.
+I built a thing! Last night I hacked together this site with Claude to experiment with setting up an example that pulled from a couple LLM APIs. The main goal was to experiment and learn. Note Ollama is setup to integrate from a local running LLM application while the rest pull from APIs. I pulled in Ollama (and this can be true for other LLMs you run on your laptop) to show this can be run without having to pay to use the APIs from other LLMs. Check it out and try it out.
 
 This project demonstrates multi-LLM integration patterns and real-time streaming architectures, showcasing how to:
 
